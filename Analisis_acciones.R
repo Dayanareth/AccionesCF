@@ -8,7 +8,8 @@ datos_df <- as.data.frame(datos_acciones)
 datos_tbl <- as_tibble(datos_df)
 datos_acciones2 <- datos_tbl |>
   mutate(FECHA = ymd(FECHA)) |>
-  dplyr::filter(!is.na(FECHA)) |>
+  dplyr::filter(!is.na(FECHA)) |> 
+  filter(EMISOR == "CORPORACION FAVORITA C.A.") |>
   group_by(FECHA, EMISOR) |>
   summarise(PRECIO_PROMEDIO = mean(PRECIO)) |> 
   tsibble::as_tsibble(index = FECHA, key = EMISOR)
