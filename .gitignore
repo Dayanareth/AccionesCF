@@ -49,4 +49,3 @@ po/*~
 # RStudio Connect folder
 rsconnect/
 .DS_Store
-data/acciones.xls
