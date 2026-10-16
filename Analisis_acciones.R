@@ -5,7 +5,8 @@ datos_acciones <- read_excel("data/acciones.xls", sheet = 1, skip = 8, n_max = 7
 names(datos_acciones)[6] <- "NUMERO_ACCIONES"
 
 datos_df <- as.data.frame(datos_acciones)
-datos_acciones2 <- datos_acciones |>
+datos_tbl <- as_tibble(datos_df)
+datos_acciones2 <- datos_tbl |>
   mutate(FECHA = ymd(FECHA)) |>
   dplyr::filter(!is.na(FECHA)) |>
   group_by(FECHA, EMISOR) |>
