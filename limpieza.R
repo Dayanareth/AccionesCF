@@ -16,3 +16,7 @@ datos_acciones2 <- datos_tbl |>
 
 datos_acciones2
 
+write_csv(as_tibble(datos_acciones2), "data/data.csv")
+
+#Grafico 
+
