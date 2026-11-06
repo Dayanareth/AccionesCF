@@ -55,9 +55,9 @@ datos_ma |>
   autoplot(PRECIO_PROMEDIO) +
   geom_line(aes(y = `5-MA`), colour = "#D55E00") +
   labs(
-    x = "Número de observación",
+    x = "Numero de observacion",
     y = "Precio (USD)",
-    title = "Media móvil de orden 5 - Corporación Favorita"
+    title = "Media movil de orden 5 - Corporacion Favorita"
   )
 
 
@@ -73,9 +73,9 @@ datos_ma
 datos_ma |>
   autoplot(sin_tendencia) +
   labs(
-    x = "Número de observación",
+    x = "Numero de observacion",
     y = "Precio sin tendencia (USD)",
-    title = "Serie sin tendencia - Corporación Favorita"
+    title = "Serie sin tendencia - Corporacion Favorita"
   )
 
 # PASO 3: Calcular la componente estacional
@@ -134,9 +134,9 @@ datos_ma
 datos_ma |>
   autoplot(restante) +
   labs(
-    x = "Número de observación",
+    x = "Numero de observacion",
     y = "Componente restante (USD)",
-    title = "Componente restante - Corporación Favorita"
+    title = "Componente restante - Corporacion Favorita"
   )
 
 
