@@ -139,5 +139,41 @@ datos_ma |>
     title = "Componente restante - Corporacion Favorita"
   )
 
+#AUDITORIA DE LA DESCOMPOSICION ADITIVA
+#Dayanareth Estévez
+
+#Descomposicion con classical_decomposition
+descomposicion <- datos |>
+  model(classical_decomposition(PRECIO_PROMEDIO ~ season(5),type = "additive")) |> components()
+
+descomposicion
+
+descomposicion |> autoplot() + labs(x = "Numero de observacion", title = "Descomposicion aditiva clasica - Corporacion Favorita")
+
+#Unir los resultados manuales con los de la funcion
+comparacion <- datos_ma |> left_join(descomposicion |>
+      as_tibble() |> select(observacion, trend, seasonal, random),by = "observacion")
+
+#Comparar la tendencia
+comparacion <- comparacion |> mutate(diferencia_tendencia = `5-MA` - trend)
+
+max(abs(comparacion$diferencia_tendencia), na.rm = TRUE)
+
+#Comparar la componente estacional
+comparacion <- comparacion |> mutate(diferencia_estacional = estacional - seasonal)
+
+max(abs(comparacion$diferencia_estacional), na.rm = TRUE)
+
+#Comparar la componente restante
+comparacion <- comparacion |> mutate(diferencia_restante = restante - random)
+
+max(abs(comparacion$diferencia_restante), na.rm = TRUE)
+
+
+#CONCLUSIÓN
+#Al hacer la comprobación cada una dió pra2cticamente 0
+#considerando el error de redondeo de la maquina, por lo que se encuentra
+#bien la descomposición
+
 
 
